@@ -15,5 +15,8 @@ public class PairMatchingController {
 
     public void process() {
         Menu menu = iteratorInputHandler.inputMenu();
+        if (menu == Menu.MATCHING) {
+            iteratorInputHandler.inputMission();
+        }
     }
 }

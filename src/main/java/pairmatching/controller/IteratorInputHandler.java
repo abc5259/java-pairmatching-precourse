@@ -1,5 +1,7 @@
 package pairmatching.controller;
 
+import pairmatching.converter.StringToMissionConvertor;
+import pairmatching.domain.Mission;
 import pairmatching.view.InputView;
 import pairmatching.view.Menu;
 
@@ -17,6 +19,13 @@ public class IteratorInputHandler {
         return iteratorInputTemplate.execute(
                 inputView::inputMenu,
                 Menu::findMenu
+        );
+    }
+
+    public Mission inputMission() {
+        return iteratorInputTemplate.execute(
+                inputView::inputMission,
+                new StringToMissionConvertor()
         );
     }
 }
