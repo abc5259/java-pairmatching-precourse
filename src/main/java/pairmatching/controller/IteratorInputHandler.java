@@ -1,6 +1,8 @@
 package pairmatching.controller;
 
 import pairmatching.converter.StringToMissionConvertor;
+import pairmatching.converter.StringToPairMatchingRequestConvertor;
+import pairmatching.domain.Answer;
 import pairmatching.domain.Mission;
 import pairmatching.view.InputView;
 import pairmatching.view.Menu;
@@ -26,6 +28,20 @@ public class IteratorInputHandler {
         return iteratorInputTemplate.execute(
                 inputView::inputMission,
                 new StringToMissionConvertor()
+        );
+    }
+
+    public PairMatchingRequest inputPairMatchMission() {
+        return iteratorInputTemplate.execute(
+                inputView::inputMission,
+                new StringToPairMatchingRequestConvertor()
+        );
+    }
+
+    public Answer inputRetryPairMatchingAnswer() {
+        return iteratorInputTemplate.execute(
+                inputView::inputRetryPairMatching,
+                Answer::findBySymbol
         );
     }
 }

@@ -20,6 +20,7 @@ public class InputView {
             + "############################################\n"
             + "과정, 레벨, 미션을 선택하세요.\n"
             + "ex) 백엔드, 레벨1, 자동차경주";
+    private static final String INPUT_RETRY_PAIR_MATCHING_MESSAGE = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?";
 
     public String inputMenu() {
         System.out.println(INPUT_MENU_MESSAGE);
@@ -29,6 +30,11 @@ public class InputView {
     public String inputMission() {
         System.out.println();
         System.out.println(INPUT_MISSION_MESSAGE);
+        return Console.readLine();
+    }
+
+    public String inputRetryPairMatching() {
+        System.out.println(INPUT_RETRY_PAIR_MATCHING_MESSAGE);
         return Console.readLine();
     }
 }

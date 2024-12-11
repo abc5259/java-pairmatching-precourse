@@ -6,7 +6,7 @@ import java.util.List;
 public class Mission {
     private final String name;
     private final PairHistories pairHistories;
-    private final List<Pair> currentPairs;
+    private List<Pair> currentPairs;
 
     public Mission(String name, PairHistories pairHistories, List<Pair> currentPairs) {
         this.name = name;
@@ -20,5 +20,15 @@ public class Mission {
 
     public boolean isEqualName(String missionName) {
         return this.name.equals(missionName);
+    }
+
+    public boolean hasPairs() {
+        return this.currentPairs != null;
+    }
+
+    public void matchingPairs(PairMatching pairMatching) {
+        List<Pair> pairs = pairMatching.matching(pairHistories);
+        pairHistories.addAll(pairs);
+        currentPairs = pairs;
     }
 }
