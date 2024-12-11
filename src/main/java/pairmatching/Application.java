@@ -10,6 +10,6 @@ public class Application {
         List<Crew> backendCrews = pariMatchingConfig.backendCrewInit().init();
         List<Crew> frontendCrews = pariMatchingConfig.frontendCrewInit().init();
         PairMatchingController pairMatchingController = pariMatchingConfig.pairMatchingController();
-        pairMatchingController.process();
+        pairMatchingController.process(backendCrews, frontendCrews);
     }
 }

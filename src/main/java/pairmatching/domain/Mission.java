@@ -31,4 +31,8 @@ public class Mission {
         pairHistories.addAll(pairs);
         currentPairs = pairs;
     }
+
+    public List<Pair> getCurrentPairs() {
+        return currentPairs;
+    }
 }

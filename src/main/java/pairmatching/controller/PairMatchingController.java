@@ -20,12 +20,15 @@ public class PairMatchingController {
     }
 
     public void process(List<Crew> backendCrews, List<Crew> frontendCrews) {
-        Menu menu = iteratorInputHandler.inputMenu();
-        if (menu == Menu.MATCHING) {
-            PairMatchingRequest pairMatchingRequest = iteratorInputHandler.inputPairMatchMission();
-            Course course = pairMatchingRequest.course();
-            Mission mission = pairMatchingRequest.mission();
-            matchingPairs(backendCrews, frontendCrews, course, mission);
+        Menu menu;
+        while ((menu = iteratorInputHandler.inputMenu()) != Menu.QUIT) {
+            if (menu == Menu.MATCHING) {
+                PairMatchingRequest pairMatchingRequest = iteratorInputHandler.inputPairMatchMission();
+                Course course = pairMatchingRequest.course();
+                Mission mission = pairMatchingRequest.mission();
+                matchingPairs(backendCrews, frontendCrews, course, mission);
+                outputView.printMatchingPairs(mission.getCurrentPairs());
+            }
         }
     }
 
