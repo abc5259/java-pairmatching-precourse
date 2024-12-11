@@ -38,6 +38,11 @@ public class PairMatchingController {
                 }
                 outputView.printMatchingPairs(mission.getCurrentPairs());
             }
+
+            if (menu == Menu.RESET) {
+                Course.resetPairMatching();
+                outputView.printResetPairs();
+            }
         }
     }
 

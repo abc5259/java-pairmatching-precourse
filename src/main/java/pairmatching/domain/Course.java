@@ -1,6 +1,7 @@
 package pairmatching.domain;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -60,6 +61,24 @@ public enum Course {
                 .filter(mission -> mission.isEqualName(missionName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 미션입니다."));
+    }
+
+    public static void resetPairMatching() {
+        List<Collection<List<Mission>>> list = Arrays.stream(Course.values())
+                .map(course -> course.missionMap.values())
+                .toList();
+
+        for (Collection<List<Mission>> lists : list) {
+            resetPair(lists);
+        }
+    }
+
+    private static void resetPair(Collection<List<Mission>> lists) {
+        for (List<Mission> missions : lists) {
+            for (Mission mission : missions) {
+                mission.resetPairs();
+            }
+        }
     }
 
     private boolean isEqualName(String name) {

@@ -35,4 +35,8 @@ public class Mission {
     public List<Pair> getCurrentPairs() {
         return currentPairs;
     }
+
+    public void resetPairs() {
+        this.currentPairs = null;
+    }
 }

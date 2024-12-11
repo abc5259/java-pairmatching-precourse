@@ -8,6 +8,7 @@ import pairmatching.domain.Pair;
 public class OutputView {
 
     private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s%n";
+    private static final String RESET_PAIR_MESSAGE = "초기화 되었습니다.";
 
     public void printErrorMessage(Exception exception) {
         System.out.printf(ERROR_MESSAGE_FORMAT, exception.getMessage());
@@ -28,5 +29,11 @@ public class OutputView {
         });
 
         System.out.println(sb);
+    }
+
+    public void printResetPairs() {
+        System.out.println();
+        System.out.println(RESET_PAIR_MESSAGE);
+        System.out.println();
     }
 }
