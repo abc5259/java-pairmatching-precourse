@@ -13,6 +13,10 @@ public class OutputView {
         System.out.printf(ERROR_MESSAGE_FORMAT, exception.getMessage());
     }
 
+    public void printErrorMessage(String message) {
+        System.out.printf(ERROR_MESSAGE_FORMAT, message);
+    }
+
     public void printMatchingPairs(List<Pair> pairs) {
         StringBuilder sb = new StringBuilder();
         pairs.forEach(pair -> {

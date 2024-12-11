@@ -29,6 +29,15 @@ public class PairMatchingController {
                 matchingPairs(backendCrews, frontendCrews, course, mission);
                 outputView.printMatchingPairs(mission.getCurrentPairs());
             }
+
+            if (menu == Menu.LOOK) {
+                Mission mission = iteratorInputHandler.inputMission();
+                if (!mission.hasPairs()) {
+                    outputView.printErrorMessage(new IllegalArgumentException("매칭 이력이 없습니다."));
+                    continue;
+                }
+                outputView.printMatchingPairs(mission.getCurrentPairs());
+            }
         }
     }
 

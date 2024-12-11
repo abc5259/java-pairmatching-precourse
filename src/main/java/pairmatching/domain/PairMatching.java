@@ -2,7 +2,9 @@ package pairmatching.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PairMatching {
     private static final int MAX_TRY_COUNT = 3;
@@ -14,13 +16,12 @@ public class PairMatching {
     }
 
     public List<Pair> matching(PairHistories pairHistories) {
-        List<Crew> shuffleCrews = Randoms.shuffle(crews);
-
         List<Pair> pairs = null;
         boolean isOk = false;
         int count = 0;
         while (!isOk && count < MAX_TRY_COUNT) {
             pairs = new ArrayList<>();
+            List<Crew> shuffleCrews = getShuffleCrews();
             if (shuffleCrews.size() % 2 == 0) {
                 isOk = createEvenPairs(pairHistories, shuffleCrews, pairs);
             }
@@ -37,9 +38,20 @@ public class PairMatching {
         return pairs;
     }
 
+    private List<Crew> getShuffleCrews() {
+        List<String> names = crews.stream().map(Crew::getName).collect(Collectors.toList());
+        List<Crew> shuffleCrews = Randoms.shuffle(names).stream().map(shuffleCrew -> new Crew(
+                crews.get(0).getCourse(),
+                shuffleCrew
+        )).collect(Collectors.toList());
+        return shuffleCrews;
+    }
+
     private boolean createEvenPairs(PairHistories pairHistories, List<Crew> shuffleCrews, List<Pair> pairs) {
         for (int i = 0; i < shuffleCrews.size(); i += 2) {
-            Pair pair = new Pair(new ArrayList<>(List.of(shuffleCrews.get(i), shuffleCrews.get(i + 1))));
+            Crew crew1 = shuffleCrews.get(i);
+            Crew crew2 = shuffleCrews.get(i + 1);
+            Pair pair = new Pair(new ArrayList<>(Arrays.asList(crew1, crew2)));
             if (pairHistories.contains(pair)) {
                 return false;
             }
