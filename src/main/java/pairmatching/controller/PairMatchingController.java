@@ -28,7 +28,6 @@ public class PairMatchingController {
                 Course course = pairMatchingRequest.course();
                 Mission mission = pairMatchingRequest.mission();
                 matchingPairs(backendCrews, frontendCrews, course, mission);
-                outputView.printMatchingPairs(mission.getCurrentPairs());
             }
 
             if (menu == Menu.LOOK) {
@@ -55,6 +54,7 @@ public class PairMatchingController {
             if (course == Course.FRONTEND) {
                 matchingPairs(frontendCrews, mission);
             }
+            outputView.printMatchingPairs(mission.getCurrentPairs());
         } catch (IllegalArgumentException exception) {
             outputView.printErrorMessage(exception);
         }
