@@ -33,11 +33,15 @@ public class Mission {
         currentPairs = pairs;
     }
 
+    public void resetPairs() {
+        this.currentPairs = null;
+    }
+
     public List<Pair> getCurrentPairs() {
         return currentPairs;
     }
 
-    public void resetPairs() {
-        this.currentPairs = null;
+    public PairHistories getPairHistories() {
+        return pairHistories;
     }
 }
