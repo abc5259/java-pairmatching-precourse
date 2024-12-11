@@ -7,6 +7,7 @@ import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 import pairmatching.domain.Mission;
 import pairmatching.domain.PairMatching;
+import pairmatching.domain.strategy.RandomShuffleStrategy;
 import pairmatching.view.Menu;
 import pairmatching.view.OutputView;
 
@@ -63,10 +64,10 @@ public class PairMatchingController {
         if (mission.hasPairs()) {
             Answer answer = iteratorInputHandler.inputRetryPairMatchingAnswer();
             if (answer == Answer.YES) {
-                mission.matchingPairs(new PairMatching(crews));
+                mission.matchingPairs(new PairMatching(crews), new RandomShuffleStrategy());
             }
             return;
         }
-        mission.matchingPairs(new PairMatching(crews));
+        mission.matchingPairs(new PairMatching(crews), new RandomShuffleStrategy());
     }
 }

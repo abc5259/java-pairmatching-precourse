@@ -1,10 +1,10 @@
 package pairmatching.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import pairmatching.domain.strategy.ShuffleStrategy;
 
 public class PairMatching {
     private static final int MAX_TRY_COUNT = 3;
@@ -15,13 +15,13 @@ public class PairMatching {
         this.crews = crews;
     }
 
-    public List<Pair> matching(PairHistories pairHistories) {
+    public List<Pair> matching(PairHistories pairHistories, ShuffleStrategy shuffleStrategy) {
         List<Pair> pairs = null;
         boolean isOk = false;
         int count = 0;
         while (!isOk && count < MAX_TRY_COUNT) {
             pairs = new ArrayList<>();
-            List<Crew> shuffleCrews = getShuffleCrews();
+            List<Crew> shuffleCrews = getShuffleCrews(shuffleStrategy);
             if (shuffleCrews.size() % 2 == 0) {
                 isOk = createEvenPairs(pairHistories, shuffleCrews, pairs);
             }
@@ -38,9 +38,9 @@ public class PairMatching {
         return pairs;
     }
 
-    private List<Crew> getShuffleCrews() {
+    private List<Crew> getShuffleCrews(ShuffleStrategy shuffleStrategy) {
         List<String> names = crews.stream().map(Crew::getName).collect(Collectors.toList());
-        List<Crew> shuffleCrews = Randoms.shuffle(names).stream().map(shuffleCrew -> new Crew(
+        List<Crew> shuffleCrews = shuffleStrategy.shuffle(names).stream().map(shuffleCrew -> new Crew(
                 crews.get(0).getCourse(),
                 shuffleCrew
         )).collect(Collectors.toList());

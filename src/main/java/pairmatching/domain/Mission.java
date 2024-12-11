@@ -2,6 +2,7 @@ package pairmatching.domain;
 
 import java.util.HashSet;
 import java.util.List;
+import pairmatching.domain.strategy.ShuffleStrategy;
 
 public class Mission {
     private final String name;
@@ -26,8 +27,8 @@ public class Mission {
         return this.currentPairs != null;
     }
 
-    public void matchingPairs(PairMatching pairMatching) {
-        List<Pair> pairs = pairMatching.matching(pairHistories);
+    public void matchingPairs(PairMatching pairMatching, ShuffleStrategy shuffleStrategy) {
+        List<Pair> pairs = pairMatching.matching(pairHistories, shuffleStrategy);
         pairHistories.addAll(pairs);
         currentPairs = pairs;
     }
