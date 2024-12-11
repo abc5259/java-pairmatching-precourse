@@ -1,6 +1,7 @@
 package pairmatching.controller;
 
 import pairmatching.view.InputView;
+import pairmatching.view.Menu;
 
 public class IteratorInputHandler {
 
@@ -12,5 +13,10 @@ public class IteratorInputHandler {
         this.iteratorInputTemplate = iteratorInputTemplate;
     }
 
-
+    public Menu inputMenu() {
+        return iteratorInputTemplate.execute(
+                inputView::inputMenu,
+                Menu::findMenu
+        );
+    }
 }
